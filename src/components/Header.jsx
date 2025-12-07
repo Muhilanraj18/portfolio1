@@ -125,6 +125,20 @@ export default function Header() {
             </motion.li>
           ))}
         </ul>
+
+        {/* CTA Button */}
+        <motion.a
+          href="#contact"
+          className="neon-button"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          style={{
+            padding: '0.6rem 1.2rem',
+            fontSize: '0.9rem',
+          }}
+        >
+          Hire Me
+        </motion.a>
       </nav>
 
       {/* Mobile menu styles (hidden for now, can be expanded) */}

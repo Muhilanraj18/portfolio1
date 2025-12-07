@@ -36,33 +36,6 @@ const projects = [
 
 function ProjectCard({ project, index }) {
   const [isHovered, setIsHovered] = useState(false)
-  const [tiltStyle, setTiltStyle] = useState({})
-
-  const handleMouseMove = (e) => {
-    const card = e.currentTarget
-    const rect = card.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-    
-    const rotateX = (y - centerY) / 10
-    const rotateY = (centerX - x) / 10
-    
-    setTiltStyle({
-      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`,
-      transition: 'transform 0.1s ease-out',
-    })
-  }
-
-  const handleMouseLeave = () => {
-    setTiltStyle({
-      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
-      transition: 'transform 0.3s ease-out',
-    })
-    setIsHovered(false)
-  }
 
   return (
     <motion.div
@@ -70,16 +43,14 @@ function ProjectCard({ project, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true, margin: '-50px' }}
+      whileHover={{ y: -10 }}
       onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={handleMouseLeave}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onHoverEnd={() => setIsHovered(false)}
       className="glass"
       style={{
         overflow: 'hidden',
         cursor: 'pointer',
         position: 'relative',
-        ...tiltStyle,
       }}
     >
       {/* Project image */}

@@ -39,43 +39,43 @@ export default function App() {
       
       {/* Fixed 3D Canvas behind all content */}
       <Canvas
-            shadows
-            dpr={[1, 2]}
-            gl={{ 
-              antialias: true, 
-              toneMapping: THREE.ACESFilmicToneMapping,
-              toneMappingExposure: 0.8
-            }}
-            camera={{ position: [0, 1.6, 6], fov: 50, near: 0.1, far: 100 }}
-            style={{ 
-              position: 'fixed', 
-              inset: 0, 
-              zIndex: 0,
-              pointerEvents: 'none'
-            }}
-          >
-            <Suspense fallback={null}>
-              <Scene />
-              <Preload all />
-            </Suspense>
-          </Canvas>
+        shadows
+        dpr={[1, 2]}
+        gl={{ 
+          antialias: true, 
+          toneMapping: THREE.ACESFilmicToneMapping,
+          toneMappingExposure: 0.8
+        }}
+        camera={{ position: [0, 1.6, 6], fov: 50, near: 0.1, far: 100 }}
+        style={{ 
+          position: 'fixed', 
+          inset: 0, 
+          zIndex: 0,
+          pointerEvents: 'none'
+        }}
+      >
+        <Suspense fallback={null}>
+          <Scene />
+          <Preload all />
+        </Suspense>
+      </Canvas>
 
-          {/* Scrollable content overlay */}
-          <main style={{ position: 'relative', zIndex: 1 }}>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-            >
-              <Hero />
-              <About />
-              <Skills />
-              <Projects />
-              <Contact />
-            </motion.div>
-          </main>
+      {/* Scrollable content overlay */}
+      <main style={{ position: 'relative', zIndex: 1 }}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </motion.div>
+      </main>
 
-          <Footer />
-        </div>
+      <Footer />
+    </div>
   )
 }
