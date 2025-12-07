@@ -1,0 +1,644 @@
+/* ===== ANIMATED TYPOGRAPHY SYSTEM ===== */
+
+/* Base Typography Classes */
+.text-hero {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+}
+
+.text-display {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.01em;
+}
+
+.text-heading {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.text-subheading {
+    font-size: clamp(1.25rem, 3vw, 1.875rem);
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.text-body {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.text-caption {
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.text-mono {
+    font-family: var(--font-mono);
+    font-variant-ligatures: none;
+}
+
+/* Gradient Text Effects */
+.gradient-text-1 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.gradient-text-2 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.gradient-text-3 {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.gradient-text-4 {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.gradient-text-animated {
+    background: linear-gradient(
+        -45deg, 
+        #667eea, 
+        #764ba2, 
+        #f093fb, 
+        #f5576c,
+        #4facfe,
+        #00f2fe
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 4s ease-in-out infinite;
+}
+
+/* Glitch Text Effects */
+.glitch-text {
+    position: relative;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.glitch-text::before {
+    animation: glitch 0.3s, blur 0.3s, glitchTop 1s 0.3s infinite linear alternate-reverse;
+    color: #ff0040;
+    z-index: -1;
+}
+
+.glitch-text::after {
+    animation: glitch 0.3s, blur 0.3s, glitchBottom 1.5s 0.5s infinite linear alternate-reverse;
+    color: #00ffff;
+    z-index: -2;
+}
+
+@keyframes blur {
+    0%, 100% {
+        text-shadow: 0px 0px 0px #00ffff, 0px 0px 0px #ff0040;
+    }
+    50% {
+        text-shadow: 2px 0px 0px #00ffff, -2px 0px 0px #ff0040;
+    }
+}
+
+.glitch-hover:hover {
+    animation: glitch 0.3s, blur 0.3s;
+}
+
+/* Neon Text Effects */
+.neon-text {
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #0fa,
+        0 0 82px #0fa,
+        0 0 92px #0fa,
+        0 0 102px #0fa,
+        0 0 151px #0fa;
+}
+
+.neon-blue {
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #00f,
+        0 0 82px #00f,
+        0 0 92px #00f,
+        0 0 102px #00f,
+        0 0 151px #00f;
+}
+
+.neon-pink {
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #f0f,
+        0 0 82px #f0f,
+        0 0 92px #f0f,
+        0 0 102px #f0f,
+        0 0 151px #f0f;
+}
+
+.neon-flicker {
+    animation: neonFlicker 1.5s infinite alternate;
+}
+
+/* Typewriter Effects */
+.typewriter {
+    font-family: var(--font-mono);
+    overflow: hidden;
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.1em;
+    animation: 
+        typewriter 4s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { 
+        border-color: transparent;
+    }
+    50% { 
+        border-color: rgba(255, 255, 255, 0.75);
+    }
+}
+
+.typewriter-continuous::after {
+    content: '|';
+    animation: blink 1s infinite;
+}
+
+/* Text Reveal Animations */
+.text-reveal {
+    position: relative;
+    overflow: hidden;
+}
+
+.text-reveal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: currentColor;
+    animation: textReveal 1s ease-in-out forwards;
+}
+
+.text-reveal-left {
+    transform: translateX(-100%);
+    animation: slideInLeft 0.8s ease forwards;
+}
+
+.text-reveal-right {
+    transform: translateX(100%);
+    animation: slideInRight 0.8s ease forwards;
+}
+
+.text-reveal-up {
+    transform: translateY(100%);
+    animation: slideInUp 0.8s ease forwards;
+}
+
+.text-reveal-down {
+    transform: translateY(-100%);
+    animation: slideInDown 0.8s ease forwards;
+}
+
+/* Letter by Letter Animations */
+.text-animate-letters {
+    display: inline-block;
+}
+
+.text-animate-letters span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInLetters 0.6s ease forwards;
+}
+
+.text-animate-letters span:nth-child(1) { animation-delay: 0.1s; }
+.text-animate-letters span:nth-child(2) { animation-delay: 0.2s; }
+.text-animate-letters span:nth-child(3) { animation-delay: 0.3s; }
+.text-animate-letters span:nth-child(4) { animation-delay: 0.4s; }
+.text-animate-letters span:nth-child(5) { animation-delay: 0.5s; }
+.text-animate-letters span:nth-child(6) { animation-delay: 0.6s; }
+.text-animate-letters span:nth-child(7) { animation-delay: 0.7s; }
+.text-animate-letters span:nth-child(8) { animation-delay: 0.8s; }
+.text-animate-letters span:nth-child(9) { animation-delay: 0.9s; }
+.text-animate-letters span:nth-child(10) { animation-delay: 1.0s; }
+
+/* Word by Word Animations */
+.text-animate-words span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px) rotateX(90deg);
+    animation: fadeInWords 0.8s ease forwards;
+}
+
+.text-animate-words span:nth-child(odd) {
+    animation-delay: 0.2s;
+}
+
+.text-animate-words span:nth-child(even) {
+    animation-delay: 0.4s;
+}
+
+@keyframes fadeInWords {
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+    }
+}
+
+/* 3D Text Effects */
+.text-3d {
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 
+        1px 1px 0 #ccc,
+        2px 2px 0 #c9c9c9,
+        3px 3px 0 #bbb,
+        4px 4px 0 #b9b9b9,
+        5px 5px 0 #aaa,
+        6px 6px 1px rgba(0,0,0,.1),
+        0 0 5px rgba(0,0,0,.1),
+        0 1px 3px rgba(0,0,0,.3),
+        0 3px 5px rgba(0,0,0,.2),
+        0 5px 10px rgba(0,0,0,.25),
+        0 10px 10px rgba(0,0,0,.2),
+        0 20px 20px rgba(0,0,0,.15);
+}
+
+.text-3d-neon {
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 15px currentColor,
+        0 0 20px #ff00de,
+        0 0 35px #ff00de,
+        0 0 40px #ff00de,
+        2px 2px 0 #800040,
+        4px 4px 0 #600030,
+        6px 6px 0 #400020;
+}
+
+/* Liquid Text Effect */
+.text-liquid {
+    position: relative;
+    color: transparent;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: url(#liquid);
+}
+
+.text-liquid::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: linear-gradient(45deg, #f093fb, #f5576c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: liquidMotion 4s ease-in-out infinite;
+}
+
+/* Matrix Text Effect */
+.text-matrix {
+    font-family: var(--font-mono);
+    color: #0f0;
+    background: #000;
+    padding: 1rem;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.text-matrix::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 255, 0, 0.1) 50%,
+        transparent 100%
+    );
+    animation: matrix 2s linear infinite;
+}
+
+/* Hologram Text */
+.text-hologram {
+    position: relative;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.text-hologram::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 255, 255, 0.3),
+        transparent
+    );
+    animation: hologram 2s linear infinite;
+}
+
+.text-hologram::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 255, 0.1) 2px,
+        rgba(0, 255, 255, 0.1) 4px
+    );
+    animation: hologramStripe 0.1s linear infinite;
+}
+
+/* Chrome Text Effect */
+.text-chrome {
+    font-weight: 900;
+    background: linear-gradient(
+        180deg,
+        #eee 0%,
+        #999 50%,
+        #777 51%,
+        #555 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 1px 0 #ccc;
+}
+
+/* Fire Text Effect */
+.text-fire {
+    font-weight: 900;
+    color: #ff6000;
+    text-shadow: 
+        0 0 5px #ff6000,
+        0 0 10px #ff6000,
+        0 0 15px #ff6000,
+        0 0 20px #ff3000,
+        0 0 35px #ff3000,
+        0 0 40px #ff0000,
+        0 0 50px #ff0000,
+        0 0 75px #ff0000;
+    animation: fire 1s ease-in-out infinite alternate;
+}
+
+@keyframes fire {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px #ff6000,
+            0 0 10px #ff6000,
+            0 0 15px #ff6000,
+            0 0 20px #ff3000,
+            0 0 35px #ff3000,
+            0 0 40px #ff0000;
+    }
+    50% {
+        text-shadow: 
+            0 0 10px #ff6000,
+            0 0 20px #ff6000,
+            0 0 25px #ff6000,
+            0 0 30px #ff3000,
+            0 0 45px #ff3000,
+            0 0 50px #ff0000,
+            0 0 60px #ff0000,
+            0 0 85px #ff0000;
+    }
+}
+
+/* Ice Text Effect */
+.text-ice {
+    font-weight: 900;
+    color: #add8e6;
+    text-shadow: 
+        0 0 5px #87ceeb,
+        0 0 10px #87ceeb,
+        0 0 15px #87ceeb,
+        0 0 20px #4682b4,
+        0 0 35px #4682b4,
+        0 0 40px #1e90ff;
+    animation: ice 2s ease-in-out infinite alternate;
+}
+
+@keyframes ice {
+    0%, 100% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(20deg);
+    }
+}
+
+/* Outline Text Effects */
+.text-outline {
+    color: transparent;
+    -webkit-text-stroke: 2px #333;
+    font-weight: 700;
+}
+
+.text-outline-animated {
+    color: transparent;
+    -webkit-text-stroke: 2px transparent;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: outlineAnimation 2s ease-in-out infinite;
+}
+
+@keyframes outlineAnimation {
+    0%, 100% {
+        -webkit-text-stroke: 2px #667eea;
+    }
+    50% {
+        -webkit-text-stroke: 2px #764ba2;
+    }
+}
+
+/* Morphing Text */
+.text-morph {
+    position: relative;
+    font-weight: 700;
+}
+
+.text-morph span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    animation: textMorph 4s infinite;
+}
+
+.text-morph span:nth-child(1) { animation-delay: 0s; }
+.text-morph span:nth-child(2) { animation-delay: 1s; }
+.text-morph span:nth-child(3) { animation-delay: 2s; }
+.text-morph span:nth-child(4) { animation-delay: 3s; }
+
+@keyframes textMorph {
+    0%, 25% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    33%, 100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Scramble Text Effect */
+.text-scramble {
+    position: relative;
+    font-family: var(--font-mono);
+}
+
+.text-scramble.active::before {
+    content: attr(data-scramble);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.7);
+    animation: scramble 0.1s linear infinite;
+}
+
+@keyframes scramble {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    .text-hero {
+        font-size: clamp(2rem, 8vw, 4rem);
+    }
+    
+    .text-display {
+        font-size: clamp(1.5rem, 6vw, 3rem);
+    }
+    
+    .text-heading {
+        font-size: clamp(1.25rem, 4vw, 2rem);
+    }
+    
+    .text-subheading {
+        font-size: clamp(1.125rem, 3vw, 1.5rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .text-3d {
+        text-shadow: 
+            1px 1px 0 #ccc,
+            2px 2px 0 #c9c9c9,
+            3px 3px 0 #bbb,
+            0 0 5px rgba(0,0,0,.1);
+    }
+    
+    .neon-text,
+    .neon-blue,
+    .neon-pink {
+        text-shadow:
+            0 0 5px #fff,
+            0 0 10px #fff,
+            0 0 15px currentColor,
+            0 0 20px currentColor;
+    }
+}
+
+/* Performance Optimizations */
+.text-gpu {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .typewriter,
+    .text-reveal,
+    .text-animate-letters span,
+    .text-animate-words span,
+    .glitch-text::before,
+    .glitch-text::after,
+    .neon-flicker {
+        animation: none !important;
+    }
+    
+    .text-reveal::after {
+        display: none;
+    }
+    
+    .text-animate-letters span,
+    .text-animate-words span {
+        opacity: 1;
+        transform: none;
+    }
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Dev Portfolio - Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 800px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #00FFFF, #FF00FF, #00FF88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #b0b0b0;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: #00FFFF;
+        }
+        .feature h3 {
+            color: #00FFFF;
+            margin-bottom: 0.5rem;
+        }
+        .cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
+            border: 1px solid #00FFFF;
+            border-radius: 12px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .tech {
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #00FFFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌌 3D Developer Portfolio</h1>
+        <p>
+            Your modern, interactive portfolio is ready!<br>
+            Built with React, Three.js, and cutting-edge web technologies.
+        </p>
+
+        <div class="features">
+            <div class="feature">
+                <h3>✨ 3D Graphics</h3>
+                <p>Immersive Three.js scenes</p>
+            </div>
+            <div class="feature">
+                <h3>🎬 Animations</h3>
+                <p>Smooth GSAP transitions</p>
+            </div>
+            <div class="feature">
+                <h3>⚡ Fast</h3>
+                <p>Optimized performance</p>
+            </div>
+            <div class="feature">
+                <h3>📱 Responsive</h3>
+                <p>Works everywhere</p>
+            </div>
+        </div>
+
+        <div style="margin: 3rem 0;">
+            <h2 style="color: #FF00FF; margin-bottom: 1rem;">Ready to Launch</h2>
+            <a href="#" class="cta" onclick="alert('Run: npm run dev\\nThen visit: http://localhost:5173'); return false;">
+                Start Development
+            </a>
+            <a href="#" class="cta" onclick="alert('Run: npm run build\\nThen deploy dist/ folder'); return false;">
+                Build for Production
+            </a>
+        </div>
+
+        <div class="tech-stack">
+            <span class="tech">React 18</span>
+            <span class="tech">Three.js</span>
+            <span class="tech">@react-three/fiber</span>
+            <span class="tech">@react-three/drei</span>
+            <span class="tech">GSAP</span>
+            <span class="tech">Framer Motion</span>
+            <span class="tech">Vite</span>
+        </div>
+
+        <p style="margin-top: 3rem; font-size: 1rem; color: #808080;">
+            📚 Read <strong>START-HERE.md</strong> for next steps<br>
+            🚀 Check <strong>DEPLOYMENT.md</strong> to go live
+        </p>
+    </div>
+</body>
+</html>

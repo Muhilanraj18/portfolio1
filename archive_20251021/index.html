@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhilan - Creative Portfolio | AR/VR & Motion Graphics</title>
+    <meta name="description" content="Creative portfolio showcasing AR/VR experiences, motion graphics, and innovative digital art">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- A-Frame for AR/VR -->
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
+    
+    <!-- Three.js for advanced 3D graphics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    
+    <!-- Particles.js for motion graphics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/typography.css">
+    <link rel="stylesheet" href="assets/css/microinteractions.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <div class="glitch-text" data-text="MUHILAN">MUHILAN</div>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
+                <div class="progress-text">0%</div>
+            </div>
+            <div class="loading-particles" id="loadingParticles"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 50 50">
+                    <path class="logo-path" d="M10,25 L40,25 M25,10 L25,40 M15,15 L35,35 M35,15 L15,35" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+                <span class="logo-text">MUHILAN</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#ar-vr" class="nav-link">AR/VR</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <canvas id="heroCanvas"></canvas>
+            <div class="particle-system" id="heroParticles"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="line-1">Muhilan Raj</span>
+                    <span class="line-2 gradient-text">CSE Student</span>
+                    <span class="line-3">& Developer</span>
+                </h1>
+                <p class="hero-subtitle typewriter" data-text="2nd Year Computer Science Engineering student passionate about quantum computing, web development, mobile apps, 3D graphics & game development.">
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="25">0</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="2">0</span>
+                        <span class="stat-label">Years Learning</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="25">0</span>
+                        <span class="stat-label">Clients</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-actions">
+                <button class="btn btn-primary" id="exploreBtn">
+                    <span>Explore Work</span>
+                    <div class="btn-particles"></div>
+                </button>
+                <button class="btn btn-secondary" id="contactBtn">
+                    <span>Get in Touch</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span class="scroll-text">Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title reveal-text">About Me</h2>
+                <p class="section-subtitle reveal-text">Passionate about creating digital experiences</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="text-block reveal-text">
+                        <p>I'm <strong>Muhilan Raj</strong>, a 2nd year Computer Science Engineering student with a deep fascination for <strong>quantum computing</strong> and cutting-edge technology. I'm passionate about exploring the intersection of quantum algorithms, web development, and immersive digital experiences.</p>
+                    </div>
+                    
+                    <div class="text-block reveal-text">
+                        <p>My interests span across <em>quantum computing research</em>, <em>full-stack web development</em>, <em>mobile app development</em>, <em>3D graphics programming</em>, and <em>game development</em>. I believe quantum computing will revolutionize how we approach complex computational problems and create new possibilities in interactive media.</p>
+                    </div>
+                    
+                    <div class="skills-preview">
+                        <div class="skill-tag">Quantum Computing</div>
+                        <div class="skill-tag">React.js</div>
+                        <div class="skill-tag">Flutter</div>
+                        <div class="skill-tag">Three.js</div>
+                        <div class="skill-tag">Unity</div>
+                        <div class="skill-tag">Python</div>
+                    </div>
+                </div>
+                
+                <div class="about-visual">
+                    <div class="profile-card">
+                        <div class="profile-image">
+                            <div class="image-placeholder">
+                                <div class="hologram-effect"></div>
+                            </div>
+                        </div>
+                        <div class="profile-info">
+                            <h3>Muhilan</h3>
+                            <p>Creative Developer</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link">
+                                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.5-4.5-10-10-10s-10 4.5-10 10c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12z"/></svg>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title reveal-text">Skills & Expertise</h2>
+                <p class="section-subtitle reveal-text">Technologies and tools I work with</p>
+            </div>
+            
+            <div class="skills-grid">
+                <!-- Quantum Computing -->
+                <div class="skill-category">
+                    <div class="category-icon">
+                        <svg class="animated-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <h3>Quantum Computing</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Quantum Algorithms</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Qiskit/Cirq</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Linear Algebra</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Development -->
+                <div class="skill-category">
+                    <div class="category-icon">
+                        <svg class="animated-icon" viewBox="0 0 24 24">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                            <rect width="4" height="12" x="2" y="9"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                    </div>
+                    <h3>Web Development</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">React.js/Next.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js/Express</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">MongoDB/SQL</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="85"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile App Development -->
+                <div class="skill-category">
+                    <div class="category-icon">
+                        <svg class="animated-icon" viewBox="0 0 24 24">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                            <line x1="12" y1="18" x2="12.01" y2="18"/>
+                        </svg>
+                    </div>
+                    <h3>Mobile Development</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Flutter/Dart</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React Native</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Firebase</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="78"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Graphics & Game Development -->
+                <div class="skill-category">
+                    <div class="category-icon">
+                        <svg class="animated-icon" viewBox="0 0 24 24">
+                            <path d="M7.5 4A5.5 5.5 0 0 0 2 9.5c0 .5-.5 1-.5 1s-.5-.5-.5-1A5.5 5.5 0 0 1 7.5 4z"/>
+                            <path d="M16.5 4A5.5 5.5 0 0 1 22 9.5c0 .5.5 1 .5 1s.5-.5.5-1A5.5 5.5 0 0 0 16.5 4z"/>
+                            <path d="M12 8a4 4 0 1 1-4 4 4 4 0 0 1 4-4"/>
+                        </svg>
+                    </div>
+                    <h3>3D Graphics & Game Dev</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Unity/C#</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="82"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Three.js/WebGL</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="78"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Cinema 4D</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="78"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title reveal-text">Portfolio</h2>
+                <p class="section-subtitle reveal-text">Featured projects and creative work</p>
+            </div>
+            
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="ar-vr">AR/VR</button>
+                <button class="filter-btn" data-filter="motion">Motion Graphics</button>
+                <button class="filter-btn" data-filter="3d">3D</button>
+            </div>
+            
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item" data-category="web motion">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Interactive Web Experience</h3>
+                            <p>Immersive storytelling with WebGL and motion graphics</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">WebGL</span>
+                                <span class="tag">GSAP</span>
+                                <span class="tag">React</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item" data-category="ar-vr">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <div class="vr-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>VR Gallery Experience</h3>
+                            <p>Virtual reality art gallery with spatial audio</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">A-Frame</span>
+                                <span class="tag">WebXR</span>
+                                <span class="tag">3D Audio</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item" data-category="motion 3d">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                            <div class="animation-preview">
+                                <div class="floating-shapes">
+                                    <div class="shape shape-1"></div>
+                                    <div class="shape shape-2"></div>
+                                    <div class="shape shape-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Brand Animation Suite</h3>
+                            <p>Complete motion graphics package for digital brand</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">After Effects</span>
+                                <span class="tag">Lottie</span>
+                                <span class="tag">Cinema 4D</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-item" data-category="web 3d">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                            <canvas class="mini-3d-scene" width="200" height="150"></canvas>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>3D Product Configurator</h3>
+                            <p>Real-time 3D product customization tool</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Three.js</span>
+                                <span class="tag">Blender</span>
+                                <span class="tag">WebGL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 5 -->
+                <div class="portfolio-item" data-category="ar-vr motion">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);">
+                            <div class="ar-marker">
+                                <div class="ar-grid">
+                                    <div class="grid-line"></div>
+                                    <div class="grid-line"></div>
+                                    <div class="grid-line"></div>
+                                    <div class="grid-line"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>AR Marketing Campaign</h3>
+                            <p>Augmented reality interactive advertisement</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">AR.js</span>
+                                <span class="tag">WebAR</span>
+                                <span class="tag">Motion</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 6 -->
+                <div class="portfolio-item" data-category="web motion">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                            <div class="code-animation">
+                                <div class="code-line"></div>
+                                <div class="code-line short"></div>
+                                <div class="code-line medium"></div>
+                                <div class="code-line"></div>
+                            </div>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Developer Portfolio</h3>
+                            <p>Animated portfolio with particle systems</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Particles</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AR/VR Showcase Section -->
+    <section id="ar-vr" class="ar-vr-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title reveal-text">AR/VR Experiences</h2>
+                <p class="section-subtitle reveal-text">Immersive digital worlds and interactive experiences</p>
+            </div>
+            
+            <div class="ar-vr-showcase">
+                <!-- VR Scene -->
+                <div class="vr-demo">
+                    <div class="demo-header">
+                        <h3>VR Art Gallery</h3>
+                        <p>Experience art in virtual space</p>
+                        <button class="btn btn-vr" id="enterVR">Enter VR</button>
+                    </div>
+                    <div class="vr-container">
+                        <a-scene id="vrScene" 
+                                 embedded 
+                                 style="height: 400px; width: 100%;"
+                                 vr-mode-ui="enabled: true"
+                                 device-orientation-permission-ui="enabled: true">
+                            
+                            <!-- Assets -->
+                            <a-assets>
+                                <a-sky color="#87CEEB"></a-sky>
+                            </a-assets>
+                            
+                            <!-- Environment -->
+                            <a-sky color="#87CEEB" animation="property: rotation; to: 0 360 0; loop: true; dur: 20000"></a-sky>
+                            <a-plane position="0 0 -4" rotation="-90 0 0" width="100" height="100" color="#7BC8A4"></a-plane>
+                            
+                            <!-- Gallery Walls -->
+                            <a-box position="-10 2.5 -5" width="0.5" height="5" depth="20" color="#FFF"></a-box>
+                            <a-box position="10 2.5 -5" width="0.5" height="5" depth="20" color="#FFF"></a-box>
+                            <a-box position="0 2.5 -15" width="20" height="5" depth="0.5" color="#FFF"></a-box>
+                            
+                            <!-- Artworks -->
+                            <a-plane position="-8 3 -5" width="3" height="2" color="#FF6B6B" 
+                                     animation="property: rotation; to: 0 5 0; loop: true; dur: 4000; dir: alternate"></a-plane>
+                            <a-plane position="-8 3 -8" width="3" height="2" color="#4ECDC4"
+                                     animation="property: rotation; to: 0 -5 0; loop: true; dur: 3000; dir: alternate"></a-plane>
+                            <a-plane position="-8 3 -11" width="3" height="2" color="#45B7D1"
+                                     animation="property: rotation; to: 0 8 0; loop: true; dur: 5000; dir: alternate"></a-plane>
+                            
+                            <a-plane position="8 3 -5" width="3" height="2" color="#96CEB4"
+                                     animation="property: rotation; to: 0 -3 0; loop: true; dur: 3500; dir: alternate"></a-plane>
+                            <a-plane position="8 3 -8" width="3" height="2" color="#FFEAA7"
+                                     animation="property: rotation; to: 0 6 0; loop: true; dur: 4500; dir: alternate"></a-plane>
+                            <a-plane position="8 3 -11" width="3" height="2" color="#DDA0DD"
+                                     animation="property: rotation; to: 0 -4 0; loop: true; dur: 2800; dir: alternate"></a-plane>
+                            
+                            <!-- Floating Elements -->
+                            <a-sphere position="0 4 -8" radius="0.3" color="#FF69B4"
+                                      animation="property: position; to: 0 6 -8; loop: true; dur: 2000; dir: alternate"></a-sphere>
+                            <a-cylinder position="3 2 -6" radius="0.2" height="1" color="#FFD700"
+                                        animation="property: rotation; to: 0 360 0; loop: true; dur: 3000"></a-cylinder>
+                            <a-octahedron position="-3 3.5 -7" radius="0.4" color="#00CED1"
+                                          animation="property: rotation; to: 360 360 360; loop: true; dur: 5000"></a-octahedron>
+                            
+                            <!-- Lighting -->
+                            <a-light type="ambient" color="#404040"></a-light>
+                            <a-light type="directional" position="5 10 5" color="#FFF" intensity="0.8"></a-light>
+                            <a-light type="point" position="0 5 -8" color="#FFB6C1" intensity="0.6"
+                                     animation="property: intensity; to: 1.2; loop: true; dur: 2000; dir: alternate"></a-light>
+                            
+                            <!-- Camera -->
+                            <a-camera position="0 1.8 0" look-controls wasd-controls>
+                                <a-cursor color="#FF4081" animation__click="property: scale; startEvents: click; to: 0.8 0.8 0.8; dur: 150; dir: alternate"></a-cursor>
+                            </a-camera>
+                        </a-scene>
+                    </div>
+                </div>
+
+                <!-- AR Demo -->
+                <div class="ar-demo">
+                    <div class="demo-header">
+                        <h3>AR Business Card</h3>
+                        <p>Scan to see augmented content</p>
+                        <button class="btn btn-ar" id="startAR">Start AR</button>
+                    </div>
+                    <div class="ar-container" id="arContainer" style="display: none;">
+                        <a-scene 
+                            embedded 
+                            arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+                            style="height: 400px; width: 100%;">
+                            
+                            <a-marker preset="hiro">
+                                <!-- 3D Business Card -->
+                                <a-box position="0 0.5 0" 
+                                       width="2" height="0.1" depth="1.2" 
+                                       color="#2C3E50"
+                                       animation="property: rotation; to: 0 360 0; loop: true; dur: 8000">
+                                    
+                                    <!-- Floating Text -->
+                                    <a-text value="MUHILAN" 
+                                            position="0 0.2 0.61" 
+                                            align="center" 
+                                            color="#ECF0F1" 
+                                            scale="0.8 0.8 0.8"
+                                            animation="property: position; to: 0 0.4 0.61; loop: true; dur: 2000; dir: alternate"></a-text>
+                                    
+                                    <a-text value="Creative Developer" 
+                                            position="0 -0.1 0.61" 
+                                            align="center" 
+                                            color="#3498DB" 
+                                            scale="0.4 0.4 0.4"></a-text>
+                                    
+                                    <!-- Particle System -->
+                                    <a-sphere position="0.8 0.3 0.8" 
+                                              radius="0.05" 
+                                              color="#E74C3C"
+                                              animation="property: position; to: -0.8 0.8 -0.8; loop: true; dur: 3000; dir: alternate"></a-sphere>
+                                    
+                                    <a-sphere position="-0.8 0.3 0.8" 
+                                              radius="0.05" 
+                                              color="#F39C12"
+                                              animation="property: position; to: 0.8 0.8 -0.8; loop: true; dur: 2500; dir: alternate"></a-sphere>
+                                    
+                                    <a-sphere position="0 0.3 -0.6" 
+                                              radius="0.05" 
+                                              color="#27AE60"
+                                              animation="property: position; to: 0 0.8 0.6; loop: true; dur: 2800; dir: alternate"></a-sphere>
+                                </a-box>
+                                
+                                <!-- Holographic Ring -->
+                                <a-ring position="0 0.1 0" 
+                                        radius-inner="1.5" 
+                                        radius-outer="1.8" 
+                                        color="#9B59B6" 
+                                        opacity="0.6"
+                                        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"></a-ring>
+                                
+                                <!-- Floating Icons -->
+                                <a-cylinder position="1.2 1 0" 
+                                           radius="0.1" 
+                                           height="0.2" 
+                                           color="#1ABC9C"
+                                           animation="property: rotation; to: 360 0 0; loop: true; dur: 2000"></a-cylinder>
+                                
+                                <a-octahedron position="-1.2 1 0" 
+                                             radius="0.15" 
+                                             color="#E67E22"
+                                             animation="property: rotation; to: 0 360 360; loop: true; dur: 4000"></a-octahedron>
+                            </a-marker>
+                            
+                            <a-entity camera></a-entity>
+                        </a-scene>
+                    </div>
+                    <div class="ar-instructions">
+                        <p>Point your camera at a Hiro marker to see the AR business card</p>
+                        <a href="https://github.com/jeromeetienne/AR.js/blob/master/data/images/HIRO.jpg" target="_blank">Download Hiro Marker</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title reveal-text">Get In Touch</h2>
+                <p class="section-subtitle reveal-text">Let's create something amazing together</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>muhilan@creative.dev</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>New York, NY</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Your Name</label>
+                        <span class="form-line"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Your Email</label>
+                        <span class="form-line"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" required>
+                        <label for="subject">Subject</label>
+                        <span class="form-line"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <label for="message">Your Message</label>
+                        <span class="form-line"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        <span>Send Message</span>
+                        <div class="btn-particles"></div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg class="logo-icon" viewBox="0 0 50 50">
+                        <path class="logo-path" d="M10,25 L40,25 M25,10 L25,40 M15,15 L35,35 M35,15 L15,35" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    <span>MUHILAN</span>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="#" class="social-link">
+                        <svg viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Muhilan. All rights reserved.</p>
+                <p>Crafted with passion and cutting-edge technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Portfolio Scripts -->
+    <script src="assets/js/performance.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/ar-vr.js"></script>
+    <script src="assets/js/animated-icons.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/scroll-integration.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
