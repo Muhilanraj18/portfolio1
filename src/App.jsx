@@ -10,10 +10,7 @@ import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import EasterEggs from './components/EasterEggs'
 import { motion } from 'framer-motion'
-import { ThemeProvider } from './context/ThemeContext'
-import { SoundProvider } from './context/SoundContext'
 
 function LoadingFallback() {
   return (
@@ -37,14 +34,11 @@ function LoadingFallback() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <SoundProvider>
-        <div className="app-root">
-          <EasterEggs />
-          <Header />
-          
-          {/* Fixed 3D Canvas behind all content */}
-          <Canvas
+    <div className="app-root">
+      <Header />
+      
+      {/* Fixed 3D Canvas behind all content */}
+      <Canvas
             shadows
             dpr={[1, 2]}
             gl={{ 
@@ -83,7 +77,5 @@ export default function App() {
 
           <Footer />
         </div>
-      </SoundProvider>
-    </ThemeProvider>
   )
 }

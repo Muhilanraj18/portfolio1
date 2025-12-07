@@ -1,10 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import useTypewriter from '../hooks/useTypewriter'
 
 export default function Hero() {
-  const { displayText, isComplete } = useTypewriter("Hi, I'm Muhilan Raj", 80, 500)
-  
   return (
     <section 
       id="hero" 
@@ -42,14 +39,7 @@ export default function Hero() {
               backgroundClip: 'text',
             }}
           >
-            {displayText}
-            <motion.span
-              animate={{ opacity: isComplete ? 0 : [1, 0] }}
-              transition={{ duration: 0.5, repeat: isComplete ? 0 : Infinity }}
-              style={{ color: '#00FFFF' }}
-            >
-              |
-            </motion.span>
+            Hi, I'm Muhilan Raj
           </motion.h1>
         </motion.div>
 
@@ -68,7 +58,9 @@ export default function Hero() {
           Frontend Developer • Creative Technologist
           <br />
           <span style={{ color: '#00ffff' }}>HTML</span> • <span style={{ color: '#ff00ff' }}>CSS</span> • <span style={{ color: '#00ff88' }}>JavaScript</span>
-        </motion.p>        {/* CTA Button */}
+        </motion.p>
+
+        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
